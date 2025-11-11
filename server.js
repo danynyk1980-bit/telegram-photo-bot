@@ -10,6 +10,13 @@ const PRIVACY_LINK = 'https://pr.dp.ru/privacy-policy';
 const bot = new TelegramBot(BOT_TOKEN, {polling: true});
 let userData = {};
 
+// Команда для полного сброса
+bot.onText(/\/reset/, (msg) => {
+  const chatId = msg.chat.id;
+  userData = {};
+  bot.sendMessage(chatId, '✅ Все данные сброшены! Бот готов к работе с чистого листа.');
+});
+
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
